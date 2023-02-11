@@ -1,0 +1,4 @@
+.buttonsList {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(50px, 100px));
+}
