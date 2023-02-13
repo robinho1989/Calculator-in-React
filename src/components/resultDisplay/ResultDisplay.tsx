@@ -1,15 +1,14 @@
+
+
 type resultArr = {
 	value: string;
 }[];
 type DisplayTypes = {
-	displayValue: resultArr;
+	displayValue: string;
+	// resultArr: resultArr;
+	// setDisplayValue: (active: string) => void;
 };
 
 export const ResultDisplay = ({ displayValue }: DisplayTypes) => {
-	const result = displayValue
-		.map((item) => {
-			return item.value;
-		})
-		.join('');
-	return <p>{result}</p>;
+	return <p>{displayValue}</p>;
 };
