@@ -25,11 +25,16 @@ export const App = () => {
 			.join('');
 		setDisplayValue(result);
 	}, [resultArr]);
-	console.log(resultArr);
+	console.log(resultChecked);
 	return (
 		<section className={styles.section}>
 			<div className={styles.appContainer}>
-				<ResultDisplay displayValue={displayValue} />
+				<ResultDisplay
+					displayValue={displayValue}
+					setDisplayArr={setResultArr}
+					resultChecked={resultChecked}
+					setResultArr={setResultArr}
+				/>
 				<div className={styles.buttonsContainer}>
 					<div className={styles.numericButtonsContainer}>
 						<ul className={styles.numericButtonsList}>
@@ -52,6 +57,7 @@ export const App = () => {
 								<EqualityButton
 									resultArr={resultArr}
 									setDisplayValue={setDisplayValue}
+									setResultArr={setResultArr}
 									setResultChecked={setResultChecked}
 								/>
 							</li>
@@ -77,7 +83,7 @@ export const App = () => {
 						</ul>
 					</div>
 				</div>
-				<ClearButton />
+				<ClearButton setResultArr={setResultArr} />
 			</div>
 		</section>
 	);

@@ -1,14 +1,20 @@
-
-
 type resultArr = {
 	value: string;
 }[];
 type DisplayTypes = {
 	displayValue: string;
-	// resultArr: resultArr;
-	// setDisplayValue: (active: string) => void;
+	resultChecked: boolean;
+	setDisplayArr: (active: resultArr) => void;
+	setResultArr:(active:resultArr)=>void
 };
 
-export const ResultDisplay = ({ displayValue }: DisplayTypes) => {
-	return <p>{displayValue}</p>;
+
+export const ResultDisplay = ({ displayValue,resultChecked,setResultArr }: DisplayTypes) => {
+	const value = () => {
+		if (resultChecked === true) {
+			setResultArr([{ value: displayValue }]);
+		}
+	};
+	
+	return <p onChange={()=>{console.log('sa')}}>{displayValue}</p>;
 };

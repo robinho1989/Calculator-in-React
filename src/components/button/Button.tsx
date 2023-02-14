@@ -25,13 +25,13 @@ export const Button = ({
 	const valueHandler = (element: React.MouseEvent<HTMLButtonElement>) => {
 		const buttonValue = element.currentTarget.textContent;
 		if (buttonValue) {
-			if (resultChecked === true) {
-				setResultArr([{ value: displayValue }]);
-				setResultChecked(false);
-			}
-			if (resultChecked === false) {
-				setResultArr([...resultArr, { value: buttonValue }]);
-			}
+			// if (resultChecked === true) {
+			// 	setResultArr([{ value: displayValue }]);
+			// 	setResultChecked(false);
+			// }
+
+			setResultArr([...resultArr, { value: buttonValue }]);
+			setResultChecked(false);
 		}
 	};
 
