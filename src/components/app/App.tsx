@@ -8,6 +8,7 @@ import {
 } from '../../buttonPattern';
 import { ClearButton } from '../clearButton/ClearButton';
 import { EqualityButton } from '../equalityButton/EqualityButton';
+import { MathButton } from '../mathButton/MathButton';
 
 type resultArr = {
 	value: string;
@@ -16,7 +17,7 @@ type resultArr = {
 export const App = () => {
 	const [resultArr, setResultArr] = useState<resultArr>([]);
 	const [displayValue, setDisplayValue] = useState('');
-	const [resultChecked, setResultChecked] = useState(false);
+	const [disableButton, setDisableButton] = useState(true);
 	useEffect(() => {
 		const result = resultArr
 			.map((item) => {
@@ -25,16 +26,11 @@ export const App = () => {
 			.join('');
 		setDisplayValue(result);
 	}, [resultArr]);
-	console.log(resultChecked);
+
 	return (
 		<section className={styles.section}>
 			<div className={styles.appContainer}>
-				<ResultDisplay
-					displayValue={displayValue}
-					setDisplayArr={setResultArr}
-					resultChecked={resultChecked}
-					setResultArr={setResultArr}
-				/>
+				<ResultDisplay displayValue={displayValue} />
 				<div className={styles.buttonsContainer}>
 					<div className={styles.numericButtonsContainer}>
 						<ul className={styles.numericButtonsList}>
@@ -46,8 +42,8 @@ export const App = () => {
 											value={button.value}
 											className={button.className}
 											resultArr={resultArr}
-											resultChecked={resultChecked}
-											setResultChecked={setResultChecked}
+											disableButton={disableButton}
+											setDisableButton={setDisableButton}
 											setResultArr={setResultArr}
 										/>
 									</li>
@@ -55,10 +51,11 @@ export const App = () => {
 							})}
 							<li>
 								<EqualityButton
+									disableButton={disableButton}
 									resultArr={resultArr}
 									setDisplayValue={setDisplayValue}
 									setResultArr={setResultArr}
-									setResultChecked={setResultChecked}
+									setDisableButton={setDisableButton}
 								/>
 							</li>
 						</ul>
@@ -68,14 +65,14 @@ export const App = () => {
 							{arithmeticOperations.map((button) => {
 								return (
 									<li key={button.value}>
-										<Button
+										<MathButton
 											displayValue={displayValue}
 											value={button.value}
 											className={button.className}
 											resultArr={resultArr}
-											resultChecked={resultChecked}
+											disableButton={disableButton}
 											setResultArr={setResultArr}
-											setResultChecked={setResultChecked}
+											setDisableButton={setDisableButton}
 										/>
 									</li>
 								);
@@ -83,7 +80,10 @@ export const App = () => {
 						</ul>
 					</div>
 				</div>
-				<ClearButton setResultArr={setResultArr} />
+				<ClearButton
+					setDisableButton={setDisableButton}
+					setResultArr={setResultArr}
+				/>
 			</div>
 		</section>
 	);

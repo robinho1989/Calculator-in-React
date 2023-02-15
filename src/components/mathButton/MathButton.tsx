@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from './button.module.css';
+import styles from './mathButton.module.css';
+
 type ResultArr = {
 	value: string;
 }[];
@@ -13,23 +13,29 @@ type ButtonValue = {
 	setDisableButton: (active: boolean) => void;
 };
 
-export const Button = ({
+export const MathButton = ({
 	value,
 	className,
+	disableButton,
 	resultArr,
-	setResultArr,
 	setDisableButton,
+	setResultArr,
 }: ButtonValue) => {
 	const valueHandler = (element: React.MouseEvent<HTMLButtonElement>) => {
 		const buttonValue = element.currentTarget.textContent;
 		if (buttonValue) {
 			setResultArr([...resultArr, { value: buttonValue }]);
-			setDisableButton(false);
+			setDisableButton(true);
 		}
 	};
-
+	const alertInfo = () => {
+		alert('Najpierw podaj liczbę');
+	};
 	return (
-		<button onClick={valueHandler} className={`${styles}.${className}`}>
+		<button
+			onClick={disableButton===false ? valueHandler : alertInfo}
+			className={`${styles}.${className}`}
+		>
 			{value}
 		</button>
 	);

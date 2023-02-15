@@ -3,15 +3,17 @@ type ResultArr = {
 	value: string;
 }[];
 type EqualityButtonTypes = {
+	disableButton: boolean;
 	resultArr: ResultArr;
 	setDisplayValue: (active: string) => void;
 	setResultArr: (active: ResultArr) => void;
-	setResultChecked: (active: boolean) => void;
+	setDisableButton: (active: boolean) => void;
 };
 export const EqualityButton = ({
+	disableButton,
 	resultArr,
 	setDisplayValue,
-	setResultChecked,
+	setDisableButton,
 	setResultArr,
 }: EqualityButtonTypes) => {
 	const valueFromResultArrHandler = () => {
@@ -24,9 +26,14 @@ export const EqualityButton = ({
 		const resultDisplay = eval(valueFromResultArr);
 		const resultToString = String(resultDisplay);
 		setDisplayValue(resultToString);
-		setResultChecked(true);
 		setResultArr([{ value: resultToString }]);
-		
 	};
-	return <button onClick={valueFromResultArrHandler}>=</button>;
+	const alertInfo = () => {
+		alert('Niepoprawne działanie');
+	};
+	return (
+		<button onClick={disableButton ? alertInfo : valueFromResultArrHandler}>
+			=
+		</button>
+	);
 };
